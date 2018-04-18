@@ -1,6 +1,6 @@
 <?php defined('PH7') or exit('Restricted access');
 /*
-Created on 2018-04-17 01:10:20
+Created on 2018-04-18 18:27:02
 File ID: settingtextColor
 */
 /***************************************************************************

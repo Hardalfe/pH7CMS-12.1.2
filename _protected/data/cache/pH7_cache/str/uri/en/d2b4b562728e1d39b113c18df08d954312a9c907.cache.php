@@ -1,6 +1,6 @@
 <?php defined('PH7') or exit('Restricted access');
 /*
-Created on 2018-04-16 15:51:15
+Created on 2018-04-18 18:26:58
 File ID: geturiusersearchquick
 */
 /***************************************************************************
