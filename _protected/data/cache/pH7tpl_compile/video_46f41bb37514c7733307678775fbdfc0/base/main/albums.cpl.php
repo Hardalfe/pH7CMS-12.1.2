@@ -1,0 +1,19 @@
+<?php 
+namespace PH7;
+defined('PH7') or exit('Restricted access');
+/*
+Created on 2018-04-04 19:58:20
+Compiled file from: C:\xampp\htdocs\pH7CMS-12.1.2\_protected\app/system/modules/video\views/base\tpl\main\albums.tpl
+Template Engine: PH7Tpl version 1.3.0 by Pierre-Henry Soria
+*/
+/***************************************************************************
+ *     pH7CMS Social Dating CMS | Pierre-Henry Soria
+ *               --------------------
+ * @since      Mon Mar 21 2011
+ * @author     SORIA Pierre-Henry
+ * @email      hello@ph7cms.com
+ * @link       http://ph7cms.com
+ * @copyright  (c) 2011-2018, Pierre-Henry Soria. All Rights Reserved.
+ * @license    Creative Commons Attribution 3.0 License - http://creativecommons.org/licenses/by/3.0/
+ ***************************************************************************/
+?><div class="center" id="video_block"> <?php if(empty($error)) { ?> <?php foreach($albums as $album) { ?> <?php $absolute_url = Framework\Mvc\Router\Uri::get('video','main','album',"$album->username,$album->name,$album->albumId") ;?> <div class="thumb_photo"> <h4><?php echo Framework\Security\Ban\Ban::filterWord($album->name) ;?></h4> <p> <a href="<?php echo $absolute_url; ?>"> <img src="<?php echo PH7_URL_DATA_SYS_MOD?>video/file/<?php echo $album->username ;?>/<?php echo $album->albumId ;?>/<?php echo $album->thumb ;?>" alt="<?php echo $album->name ;?>" title="<?php echo $album->name ;?>" /> </a> </p> <p><?php echo nl2br(Framework\Security\Ban\Ban::filterWord($album->description)) ;?></p> <p class="italic"><?php echo t('Views:'); ?> <?php echo Framework\Mvc\Model\Statistic::getView($album->albumId,DbTableName::ALBUM_VIDEO) ;?></p> <?php if($is_user_auth AND $member_id == $album->profileId) { ?> <div class="small"> <a href="<?php $design->url('video', 'main', 'editalbum', $album->albumId) ;?>"><?php echo t('Edit'); ?></a> | <?php LinkCoreForm::display(t('Delete'), 'video', 'main', 'deletealbum', array('album_id'=>$album->albumId)) ;?> </div> <?php } ?> <p> <?php RatingDesignCore::voting($album->albumId,DbTableName::ALBUM_VIDEO) ;?> <?php $design->like($album->username,$album->firstName,$album->sex,$absolute_url) ;?> | <?php $design->report($album->profileId, $album->username, $album->firstName, $album->sex) ;?> </p> </div> <?php } ?> <?php $this->display('page_nav.inc.tpl', PH7_PATH_TPL . PH7_TPL_NAME . PH7_DS); ?> <?php } else { ?> <p><?php echo $error; ?></p> <?php } ?> <p class="bottom"> <a class="btn btn-default btn-md" href="<?php $design->url('video', 'main', 'addalbum') ;?>"><?php echo t('Add a new album'); ?></a> </p></div>
